@@ -1,13 +1,113 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
 <head>
 	<title>Angular for validations</title>
-	<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-	<script type="text/javascript" src="js/app.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
 </head>
 <body>
+	<div class="container" ng-controller="FormValidationController">
+		<section>
+		<form ng-submit="onSubmit(theUser.$valid)" name="theUser" novalidate="novalidate">
+			<div class="form-group" ng-class="{'has-error': !theUser.firstname.$valid && (!theUser.$pristine || theUser.$submitted), 'has-success': theUser.firstname.$valid}" >
+				<label for="firstname" class="control-label">First Name</label>
+				<input type="text" class="form-control" name="firstname" ng-model="formModel.firstname" placeholder="First Name" required="required">
+				<p class="help-block" ng-show="theUser.firstname.$error.required && (!theUser.$pristine || theUser.$submitted)">
+					This field is required
+				</p>
+				<p class="help-block" ng-show="theUser.firstname.$error.email && (!theUser.$pristine || theUser.$submitted)">
+					This is an invalid entry
+				</p>
+			</div>
+			<div class="form-group" ng-class="{'has-error': !theUser.lastname.$valid && (!theUser.$pristine || theUser.$submitted), 'has-success': theUser.lastname.$valid}">
+				<label for="lastname" class="control-label">Last Name</label>
+				<input type="text" class="form-control" name="lastname" ng-model="formModel.lastname" placeholder="Last Name" required="required">
+				<p class="help-block" ng-show="theUser.lastname.$error.required && (!theUser.$pristine || theUser.$submitted)">
+					This field is required
+				</p>
+				<p class="help-block" ng-show="theUser.lastname.$error.email && (!theUser.$pristine || theUser.$submitted)">
+					This is an invalid entry
+				</p>
+			</div>
+			<div class="form-group" ng-class="{'has-error': !theUser.email.$valid && (!theUser.$pristine || theUser.$submitted), 'has-success': theUser.email.$valid}">
+				<label for="email" class="control-label">Email</label>
+				<input type="email" class="form-control" name="email" ng-model="formModel.email" placeholder="Email" required="required">
+				<p class="help-block" ng-show="theUser.email.$error.required && (!theUser.$pristine || theUser.$submitted)">
+					This field is required
+				</p>
+				<p class="help-block" ng-show="theUser.email.$error.email && (!theUser.$pristine || theUser.$submitted)">
+					This is an invalid entry
+				</p>
+			</div>
+			<div class="form-group" ng-class="{'has-error': !theUser.username.$valid && (!theUser.$pristine || theUser.$submitted), 'has-success': theUser.username.$valid}">
+				<label for="username" class="control-label">Username</label>
+				<input type="text" class="form-control" name="username" ng-model="formModel.username" placeholder="Username" required="required">
+				<p class="help-block" ng-show="theUser.username.$error.required && (!theUser.$pristine || theUser.$submitted)">
+					This field is required
+				</p>
+				<p class="help-block" ng-show="theUser.username.$error.email && (!theUser.$pristine || theUser.$submitted)">
+					This is an invalid entry
+				</p>
+			</div>
+			<div class="form-group" ng-class="{'has-error': !theUser.number.$valid && (!theUser.$pristine || theUser.$submitted), 'has-success': theUser.number.$valid}">
+				<label for="password" class="control-label">Password</label>
+				<input type="password" class="form-control" name="password" ng-model="formModel.password" placeholder="Password" required="required">
+				<p class="help-block" ng-show="theUser.password.$error.required && (!theUser.$pristine || theUser.$submitted)">
+					This field is required
+				</p>
+				<p class="help-block" ng-show="theUser.password.$error.email && (!theUser.$pristine || theUser.$submitted)">
+					This is an invalid entry
+				</p>
+			</div>
+			<div class="form-group">
+				<label for="confirmpassword" class="control-label">Confirm Password</label>
+				<input type="password" class="form-control" name="confirmpassword" ng-model="formModel.confirmpassword" placeholder="Confirm Password">
+				<p class="help-block" ng-show="theUser.confirmpassword.$error.required && (!theUser.$pristine || theUser.$submitted)">
+					This field is required
+				</p>
+				<p class="help-block" ng-show="theUser.confirmpassword.$error.email && (!theUser.$pristine || theUser.$submitted)">
+					This is an invalid entry
+				</p>
+				
+			</div>
+			<div class="form-group">
+				<label for="address" class="control-label">Address</label>
+				<input type="text" class="form-control" name="address" ng-model="formModel.address" placeholder="Address">
+			</div>
+			<div class="form-group">
+				<label for="city" class="control-label">City</label>
+				<input type="text" class="form-control" name="city" ng-model="formModel.city" placeholder="City">
+			</div>
+			<div class="form-group">
+				<label for="state" class="control-label">State</label>
+				<input type="text" class="form-control" name="state" ng-model="formModel.state" placeholder="State">
+			</div>
+			<div class="form-group" ng-class="{'has-error': !theUser.number.$valid && (!theUser.$pristine || theUser.$submitted), 'has-success': theUser.number.$valid}">
+				<label for="number" class="control-label">Number</label>
+				<input type="number" class="form-control" name="number" ng-model="formModel.number" placeholder="Number" required="required">
+				<p class="help-block" ng-show="theUser.number.$error.required && (!theUser.$pristine || theUser.$submitted)">
+					This field is required
+				</p>
+				<p class="help-block" ng-show="theUser.number.$error.email && (!theUser.$pristine || theUser.$submitted)">
+					This is an invalid entry
+				</p>
+			</div>
+			<div class="form-group">
+				<select name="gender" class="form-control" ng-model="formModel.gender">
+					<option value="">Please choose</option>
+					<option value="male">Male</option>
+					<option value="female">Female</option>
+			</select>
+			</div>
+			<div class="form-group">
+				<input type="submit" class="btn btn-default" value="Submit">
+			</div>
+		</form>
+		<pre>{{ theUser.firstname.$error | json}}</pre>
+	</section>
+	</div>
+	<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
 
 </body>
 </html>
